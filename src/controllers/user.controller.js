@@ -5,16 +5,16 @@ const apiConfig = require('../../config/config.json').development;
 
 exports.register = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { displayName, email, password } = req.body;
  
-        if (!email || !password) {
+        if (!displayName || !email || !password) {
             return res.status(400).json({
                 message: "Tous les champs ne sont pas remplis correctement."
             })
         }
         if (password.length < 8) {
             return res.status(400).json({
-                message: "Veuillez renseigner un mot de passe contenant plus de 8 caractères."
+                message: "Veuillez renseigner un mot de passe contenant au moins 8 caractères."
             });
         }
 
@@ -28,6 +28,7 @@ exports.register = async (req, res) => {
 
         const encryptedPassword = await encrypt(password);
         const data = {
+            displayName: displayName,
             email: email,
             password: encryptedPassword
         }
@@ -79,6 +80,7 @@ exports.login = async (req, res) => {
 
         const token = await createJwt({
             userId: user.id,
+            displayName: user.displayName,
             email: user.email,
         });
 

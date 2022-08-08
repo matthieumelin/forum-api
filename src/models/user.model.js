@@ -12,20 +12,15 @@ User.init({
         primaryKey: true,
         autoIncrement: true
     },
+    displayName: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        unique: false,
+    },
     email: {
         type: DataTypes.STRING(255),
         allowNull: false,
         unique: true
-    },
-    firstName: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-        unique: false,
-    },
-    lastName: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-        unique: false,
     },
     password: {
         type: DataTypes.STRING(255),

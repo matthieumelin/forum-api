@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.send("Focus Evolution Shopping API");
+    res.send("Forum API");
 });
 
 app.use('/api/v1/users', require('./src/routes/user.routes'));
@@ -22,6 +22,6 @@ app.listen(3030, async() => {
         await sequelize.authenticate();
         console.log("API started on port 3030.");
     } catch (error) {
-        console.error("Unable to connet to the database: ", error);
+        console.error("Unable to connect to the database: ", error);
     }
 })
